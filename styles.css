@@ -1,0 +1,357 @@
+/* Grundlegende Stile */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+    background-color: black;
+    color: #ffffff;
+    scroll-behavior: smooth;
+}
+
+
+/* Vollbild-Bereich mit Logo und Navigation */
+.hero-section {
+    display: flex;
+    justify-content: center;  /* Logo zentrieren */
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+    
+}
+
+/* Logo */
+.logo {
+    width: 60%;
+    max-width: 1000px;
+    margin-bottom: 2rem;
+    transition: width 0.6s ease; /* Hinzugefügt */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Initial position */
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #000; /* Schwarzer Hintergrund */
+    z-index: 1000; /* Damit die Navbar immer oben ist */
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;  /* Zentriert die Navigation */
+    align-items: center;
+    width: 100%; /* Um sicherzustellen, dass es die gesamte Breite einnimmt */
+    transition: all 0.3s ease;
+    box-shadow: 0px 0px 20px black;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 3rem;
+}
+
+.navbar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.7rem;
+    font-style: italic;
+    font-weight: 700;
+    transition: all 0.8s;
+}
+
+.navbar ul li a:hover {
+    color: #ffa500;
+}
+
+/* Wenn das Logo verkleinert wird und die Navigation fixiert wird */
+.scrolled .logo {
+    width: 25%; /* Kleineres Logo */
+    position: fixed;
+    top: -7%; /* Oberer Abstand */
+    left: 50%; /* Setzt das Logo horizontal in die Mitte */
+    transform: translateX(-50%) scale(0.5); /* Skaliere das Logo und zentriere es */ /* Sanfte Übergänge */
+    z-index: 1001;
+}
+
+.scrolled .bar a{
+    font-size: 1.5rem;
+}
+
+.midl{
+    transition: all 0.3s ease;
+}
+
+.scrolled .midl{
+    margin-right: 100px;
+    transition: all 0.3s ease; 
+}
+
+
+
+.scrolled .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    flex-direction: row;
+    gap: 2rem;
+    opacity: 1;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    transition: padding 0.6s ease; /* Hinzugefügt für ein flüssigeres Padding */
+}
+
+/* Abschnitte */
+.content-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 4rem 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.window {
+    width: 80%;
+    max-width: 800px;
+    padding: 2rem;
+    padding-bottom: 0;
+    padding-top: 0;
+    text-align: center;
+}
+
+.window h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.window p {
+    font-size: 1.2rem;
+    color: #bbbbbb;
+}
+
+/* Galerie */
+.gallery {
+    width: 60%;
+    display: grid;
+    grid-template-columns: 1fr;  /* Bilder untereinander anstatt nebeneinander */
+    gap: 1.5rem;
+    margin-top: 2rem;
+    margin: auto;
+}
+
+/* Bilder in der Galerie */
+.gallery img {
+    width: 100%;   /* Bilder füllen die gesamte Spalte */
+    height: auto;  /* Höhe automatisch anpassen */
+    object-fit: cover;  /* Bildformat beibehalten */
+    border-radius: 8px;
+    transition: transform 0.1s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    opacity: 1 !important; /* Bilder immer sichtbar */
+    transition: none !important; /* Keine Übergänge */
+    visibility: visible !important; /* Sicherstellen, dass Bilder sichtbar bleiben */
+}
+
+.content-section.active {
+    visibility: visible; /* Bilder/Abschnitte bleiben sichtbar */
+    opacity: 1; /* Bilder/Abschnitte bleiben sichtbar */
+    transition: none; /* Keine Animationen oder Übergänge */
+}
+
+/* Hover-Effekt für Bilder */
+.gallery img:hover {
+    box-shadow: 0 4px 20px rgba(255, 165, 0, 0.3);
+}
+
+/* Mehr anzeigen Button */
+.more-button {
+    background-color: transparent; 
+    color: #ffffff; 
+    padding: 0.5rem 1rem;
+    margin-top: 20px;  
+    cursor: pointer;
+    border-radius: 5px; 
+    font-size: large; 
+    transition: all 0.3s ease; 
+    border: none;
+}
+
+.more-button:hover {
+    color: #ffa500;
+}
+
+/* Mehr lesen/Inhalte */
+.more-content {
+    display: none; /* Anfangs versteckt */
+    margin-top: 20px; /* Abstand zwischen Bildern */
+}
+
+
+
+#history-more{
+    display: none;
+}
+
+/* Animation */
+@keyframes fadeInZoom {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+
+/* Abschnitte mit Animation sichtbar machen */
+.content-section.active {
+    opacity: 1;
+    animation: fadeInSection 0.6s ease-out;
+}
+
+.footer{
+    text-align: center;
+    margin-bottom: 30px;
+}
+/* Grundlegende Stile */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+    background-color: black;
+    color: #ffffff;
+    scroll-behavior: smooth;
+    transition: all 0.8s;
+}
+
+
+.bg{
+    transition: all 0.5s ease;
+}
+
+/*bg wichtig für Hintergrund*/
+
+/*.scrolled .bg{
+
+opacity: 1;
+background-image:  linear-gradient(#3a3a3a 2px, transparent 2px), linear-gradient(90deg, #3a3a3a 2px, transparent 2px), linear-gradient(#3a3a3a 1px, transparent 1px), linear-gradient(90deg, #3a3a3a 1px, #141414 1px);
+background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+
+background-color: #000000;  
+background-image:  linear-gradient(30deg, #262626 12%, transparent 12.5%, transparent 87%, #262626 87.5%, #262626), linear-gradient(150deg, #262626 12%, transparent 12.5%, transparent 87%, #262626 87.5%, #262626), linear-gradient(30deg, #262626 12%, transparent 12.5%, transparent 87%, #262626 87.5%, #262626), linear-gradient(150deg, #262626 12%, transparent 12.5%, transparent 87%, #262626 87.5%, #262626), linear-gradient(60deg, #26262677 25%, transparent 25.5%, transparent 75%, #26262677 75%, #26262677), linear-gradient(60deg, #26262677 25%, transparent 25.5%, transparent 75%, #26262677 75%, #26262677);
+background-size: 40px 70px;
+background-position: 0 0, 0 0, 20px 36px, 20px 36px, 0 0, 20px 36px;
+}
+
+/* Einblend-Animation */
+@keyframes fadeInSection {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Start mit einer leichten Verschiebung nach unten */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Endposition */
+    }
+}
+
+/* Abschnitte */
+.content-section {
+    opacity: 0; /* Abschnitte sind zu Beginn unsichtbar */
+    transition: opacity 0.5s ease;
+}
+
+.content-section.active {
+    opacity: 1;
+    animation: fadeInSection 0.6s ease-out; /* Die Animation wird aktiviert */
+}
+
+/* Styling für den Rest deiner Seite (z.B. Navbar, Footer, etc.) */
+
+
+
+
+/* --- Navigation & Logo --- */
+
+
+@media (max-width: 1000px) {
+    .logo{
+    width: 50%;
+    max-width: 400px;
+    transition: all 0.6s ease;
+    margin-bottom: 1rem;
+    }
+}
+
+/* --- Responsive Anpassungen --- */
+@media (max-width: 768px) {
+    .scrolled .logo {
+        margin-top: 10%;
+        width: 50%;
+    }
+
+ 
+
+    .logo {
+        width: 70%;
+    }
+
+    .navbar ul {
+        gap: 1.5rem;
+    }
+
+    .navbar ul li a {
+        font-size: 1.5rem;
+    }
+
+    .window h2 {
+        font-size: 1.8rem;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        width: 80%;
+    }
+
+    .navbar ul li a {
+        font-size: 1.5rem;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .window h2 {
+        font-size: 1.5rem;
+    }
+}
+a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #000000;
+}
